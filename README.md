@@ -1,8 +1,7 @@
 # Template for simple lambda *serverless framework* deploy
 
 ## Summary
-A simple template with a single lambda prepared for deploy and test the configurations and basic permision deploy.
-
+A simple demo using tesseract.js ocr 
 ## Prerequisites
 
 - Node.js
@@ -32,6 +31,20 @@ aws-cli/2.4.2
 ```
 - AWS Credentias configured
 
+## Notes of develop and configurations
+
+- run `npm init` for start the npm project and install pakages over the original template
+
+- change the name o services in serverless.yml
+
+```
+service: serverless-aws-ocr-tesseract-demo
+```
+
+- add the code of tesseract sample using the oficial documentations:
+    - https://github.com/naptha/tesseract.js#tesseractjs
+
+- Add more time out value and more memory to lambda
 ## Usage
 
 - Download this repository
@@ -54,3 +67,10 @@ serverless invoke --function hello --aws-profile name-you-profile
 ```
 serverless remove --stage dev
 ```
+
+# Based on template
+
+This repo is base on template: https://github.com/olcortesb/serverless-aws-nodejs-template
+
+
+

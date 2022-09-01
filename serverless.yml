@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: serverless-aws-nodejs-template
+service: serverless-aws-ocr-tesseract-demo
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -22,7 +22,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
 
 # you can overwrite defaults here
 #  stage: dev
@@ -61,6 +61,8 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    memorySize: 3008
+    timeout: 500
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

@@ -1,0 +1,27 @@
+{
+  "name": "serverless-aws-ocr-tesseract-demo",
+  "version": "1.0.0",
+  "description": "OCR tesseract Serverless framework demo",
+  "main": "handler.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olcortesb/serverless-aws-ocr-tesseract-demo.git"
+  },
+  "keywords": [
+    "serverless",
+    "aws",
+    "lambda"
+  ],
+  "author": "olcortesb@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olcortesb/serverless-aws-ocr-tesseract-demo/issues"
+  },
+  "homepage": "https://github.com/olcortesb/serverless-aws-ocr-tesseract-demo#readme",
+  "dependencies": {
+    "tesseract.js": "^3.0.2"
+  }
+}
