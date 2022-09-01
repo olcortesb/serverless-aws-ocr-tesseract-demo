@@ -1,4 +1,4 @@
-# Template for simple lambda *serverless framework* deploy
+# OCR tesseract aws-lambda demo with *serverless framework* 
 
 ## Summary
 A simple demo using tesseract.js ocr 
@@ -45,6 +45,10 @@ service: serverless-aws-ocr-tesseract-demo
     - https://github.com/naptha/tesseract.js#tesseractjs
 
 - Add more time out value and more memory to lambda
+```
+memorySize: 3008
+timeout: 500
+```
 ## Usage
 
 - Download this repository
