@@ -1,7 +1,7 @@
-# OCR tesseract aws-lambda demo with *serverless framework* 
+# OCR tesseract *AWS*-lambda demo with *serverless framework* 
 
 ## Summary
-A simple demo using tesseract.js ocr 
+A simple demo using [tesseract.js](https://github.com/naptha/tesseract.js#tesseractjs) OCR wiht AWS lambda Function.  
 ## Prerequisites
 
 - Node.js
@@ -33,15 +33,15 @@ aws-cli/2.4.2
 
 ## Notes of develop and configurations
 
-- run `npm init` for start the npm project and install pakages over the original template
+- Run `npm init` for start the npm project and install packages over the original template
 
-- change the name o services in serverless.yml
+- Change the name of services in serverless.yml
 
 ```
 service: serverless-aws-ocr-tesseract-demo
 ```
 
-- add the code of tesseract sample using the oficial documentations:
+- Add the code of tesseract sample using the official documentations:
     - https://github.com/naptha/tesseract.js#tesseractjs
 
 - Add more time out value and more memory to lambda
@@ -54,7 +54,7 @@ timeout: 500
 - Download this repository
 ```
 # by ssh for example
-git clone git@github.com:olcortesb/serverless-aws-nodejs-template.git
+git clone git@github.com:olcortesb/serverless-aws-ocr-tesseract-demo.git
 ```
 
 - Deploy the lambda
