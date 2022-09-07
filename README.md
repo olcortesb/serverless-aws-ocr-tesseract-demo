@@ -67,6 +67,12 @@ sls deploy --aws-profile nombre-de-nuestro-profile --stage dev
 serverless invoke --function hello --aws-profile name-you-profile
 ```
 
+- Call Lambda functions by api gateway
+
+```
+curl -H 'x-api-key:you-api-key-result-in-deploy'  https://you-url-result-in-deploy.execute-api.us-east-1.amazonaws.com/dev/call
+```
+
 - Remove Stack
 ```
 serverless remove --stage dev

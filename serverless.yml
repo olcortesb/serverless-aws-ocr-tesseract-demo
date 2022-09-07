@@ -23,6 +23,9 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
+  apiGateway:
+    apiKeys:
+      - ocr-tesseract-apikey
 
 # you can overwrite defaults here
 #  stage: dev
@@ -63,6 +66,11 @@ functions:
     handler: handler.hello
     memorySize: 3008
     timeout: 500
+    events:
+      - http:
+          path: call
+          method: get
+          private: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
