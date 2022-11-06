@@ -23,10 +23,26 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
+  region: us-east-1
   apiGateway:
     apiKeys:
       - ocr-tesseract-apikey
-
+  environment:
+    SQS_URL: { 'Fn::GetAtt': ['ProcessText', 'QueueName'] }
+  iam:
+    role:
+      statements:
+      - Effect: "Allow"
+        Action:
+          - "sqs:SendMessage"
+          - "sqs:GetQueueUrl"
+        Resource: 
+          - "arn:aws:sqs:${self:provider.region}:XXXXXXXXXXXX:dev-process-text"
+      - Effect: "Allow"
+        Action:
+          - "sqs:ListQueues"
+        Resource: 
+          - "arn:aws:sqs:${self:provider.region}:XXXXXXXXXXXX:*"
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -71,6 +87,22 @@ functions:
           path: call
           method: get
           private: true
+  listen: 
+    handler: handler.listen
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - ProcessText
+              - Arn
+
+
+resources:
+  Resources:
+    ProcessText:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${opt:stage}-process-text
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
