@@ -6,6 +6,7 @@ const {sqsClient} = require("./libs/sqsClient.js");
 const path = require('path');
 const fs = require('fs');
 const { createWorker } = require('tesseract.js');
+require('dotenv').config();
 
 module.exports.hello = async (event) => {
   const dir = path.join('/tmp');
@@ -19,6 +20,7 @@ module.exports.hello = async (event) => {
       
   const result = await run(worker);
 
+  const url = 'https://sqs.us-east-1.amazonaws.com/' + process.env.ACCOUNT + '/prod-process-text';
   // Set the parameters
   const params = {
     DelaySeconds: 10,
@@ -39,8 +41,12 @@ module.exports.hello = async (event) => {
     MessageBody:result,
 
     // Change by your accoun number XXXXXXXXXXXX
-    QueueUrl:"https://sqs.us-east-1.amazonaws.com/XXXXXXXXXXXX/dev-process-text" //SQS_QUEUE_URL; e.g., 'https://sqs.REGION.amazonaws.com/ACCOUNT-ID/QUEUE-NAME'
+    QueueUrl:url
   };
+  
+  console.log(params);
+  console.log(url);
+  console.log(process.env.ACCOUNT);
 
   await sqsClient.send(new SendMessageCommand(params));
 

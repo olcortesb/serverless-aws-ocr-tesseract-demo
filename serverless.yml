@@ -20,13 +20,18 @@ service: serverless-aws-ocr-tesseract-demo
 # Check out our docs for more details
 frameworkVersion: '3'
 
+useDotenv: true
+
+custom:
+  stage: ${opt:stage, 'dev'}
+
 provider:
   name: aws
   runtime: nodejs14.x
   region: us-east-1
   apiGateway:
     apiKeys:
-      - ocr-tesseract-apikey
+      - ocr-tesseract-apikey-${self:custom.stage}
   environment:
     SQS_URL: { 'Fn::GetAtt': ['ProcessText', 'QueueName'] }
   iam:
@@ -37,12 +42,12 @@ provider:
           - "sqs:SendMessage"
           - "sqs:GetQueueUrl"
         Resource: 
-          - "arn:aws:sqs:${self:provider.region}:XXXXXXXXXXXX:dev-process-text"
+          - "arn:aws:sqs:${self:provider.region}:${env:ACCOUNT}:${opt:stage}-process-text"
       - Effect: "Allow"
         Action:
           - "sqs:ListQueues"
         Resource: 
-          - "arn:aws:sqs:${self:provider.region}:XXXXXXXXXXXX:*"
+          - "arn:aws:sqs:${self:provider.region}:${env:ACCOUNT}:*"
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -77,11 +82,19 @@ provider:
 #    - include-me.js
 #    - include-me-dir/**
 
+layers:
+  tesseratjs:
+    package:
+      artifact: ./layer.zip
+
+
 functions:
   hello:
     handler: handler.hello
     memorySize: 3008
     timeout: 500
+    layers:
+      - { Ref: TesseratjsLambdaLayer }
     events:
       - http:
           path: call

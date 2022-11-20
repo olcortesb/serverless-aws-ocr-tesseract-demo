@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/olcortesb/serverless-aws-ocr-tesseract-demo#readme",
   "dependencies": {
-    "@aws-sdk/client-sqs": "^3.202.0",
-    "aws-sdk": "^2.1246.0",
-    "tesseract.js": "^3.0.2"
+    "@aws-sdk/client-sqs": "^3.213.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.1258.0"
   }
 }
